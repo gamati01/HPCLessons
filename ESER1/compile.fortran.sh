@@ -6,12 +6,12 @@ COMP=nvfortran
 OPT=
 #
 # ifx (intel)
-#COMP=ifx
+COMP=ifx
 OPT=
 #
 # gfortran (GNU)
-#COMP=gfortran
-OPT=
+COMP=gfortran
+OPT=-O3
 #
 echo "compiling with " $COMP $OPT 
 #
