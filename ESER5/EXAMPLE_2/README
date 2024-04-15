@@ -1,0 +1,40 @@
+OpenACC
+.
+├── clean.sh
+├── compile.c.sh
+├── compile.fortran.sh
+├── inc_precision.h
+├── mm.0.F90
+├── mm.1.F90
+├── mm.2.F90
+├── mm.c
+├── mod_tools.F90
+├── README
+├── submit.c.slurm
+└── submit.fortran.slurm
+
+
+Fortran: dynamic allocation, matrix size defined at input
+mm.0.F90		-> main (with only parallel clause)
+mm.1.F90		-> main (with parallel independent clause)
+mm.2.F90		-> main (with parallel independent clause+unrolling)
+mod_tools.F90		-> auxiliary
+
+C: static allocation, matrix size defined in the code. Default value = 4096
+mm.c			-> main (with Kernel clause)
+inc_precision.h 	-> auxiliary
+
+* to compile C code:
+	./compile.C.sh
+
+* to compile fortran code:
+	./compile.fortran.sh
+
+* to clean directory
+	./clean.sh
+
+* to submit fortran version
+	sbatch submit.fortran.slurm
+
+* to submit fortran version
+	sbatch submit.C.slurm

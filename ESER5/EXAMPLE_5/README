@@ -1,0 +1,23 @@
+Do concurrent
+├── clean.sh
+├── compile.fortran.sh
+├── mm.0.F90
+├── mm.1.F90
+├── mod_tools.F90
+├── README
+└── submit.fortran.slurm
+
+
+Fortran: dynamic allocation, matrix size defined at input
+mm.0.F90		-> main (with do concurrent on 1 index)
+mm.1.F90		-> main (with do concurrent on 2 indexes)
+mod_tools.F90		-> auxiliary
+
+* to compile fortran code:
+	./compile.fortran.sh
+
+* to clean directory
+	./clean.sh
+
+* to submit fortran version
+	sbatch submit.fortran.slurm
