@@ -5,8 +5,8 @@
 #include <sys/time.h>
 #include <assert.h>
 
-#define N_BLOCK 128
-#define nn 4096
+//#define N_BLOCK 16
+#define nn 512
 
 #include "inc_precision.h"
 
@@ -18,6 +18,7 @@ double elapsed ;
 REAL a[nn][nn];       /** matrixes**/
 REAL b[nn][nn];
 REAL c[nn][nn];
+REAL check[nn][nn];
 
 /*---------------------------------------------------------*/
 
@@ -39,7 +40,8 @@ __global__ void gpu_mm(REAL* d_a, REAL* d_b, REAL* d_c, int n) {
 
 int main()
 {
-  int i, j;
+  int i, j, k;
+  int N_BLOCK;
   float time1, time2, dub_time;
   float gpu_elapsed_time_ms;
 
@@ -48,6 +50,8 @@ int main()
   cudaMalloc((void **) &d_a, sizeof(REAL)*nn*nn);
   cudaMalloc((void **) &d_b, sizeof(REAL)*nn*nn);
   cudaMalloc((void **) &d_c, sizeof(REAL)*nn*nn);
+
+  N_BLOCK=nn/32;
 
   dim3 dimGrid(N_BLOCK, N_BLOCK);
   dim3 dimBlock(nn/N_BLOCK, nn/N_BLOCK);
@@ -70,6 +74,7 @@ int main()
       a[j][i] = ((REAL)rand())/((REAL)RAND_MAX);
       b[j][i] = ((REAL)rand())/((REAL)RAND_MAX);
       c[j][i] = 0.0L;		
+      check[j][i] = 0.0L;		
     }
   }
 
@@ -128,12 +133,23 @@ int main()
   /* simple check */
   printf("Check -----------------> %f \n", c[nn/2][nn/2]);
 
-  time1 = clock();
-  for (j = 0; j < nn; j++) {
-    for (i = 0; i < nn; i++) {
-      printf("%f %f %f \n", c[j][i], a[j][i], b[j][i]);		
-    }
-    }
+#ifdef VALIDATION
+  for (j = 0; j < nn; j++) { 
+      for (k = 0; k < nn; k++) { 
+          for (i = 0; i < nn; i++) { 
+              check[j][i] = check[j][i]+a[j][k]*b[k][i];		
+          } 
+      } 
+  } 
+//
+  for (j = 0; j < nn; j++) { 
+      for (i = 0; i < nn; i++) { 
+          printf("Error ---------> %lf, \n", check[j][i]-c[j][i]); 
+      } 
+  } 
+#else
+// do nothing
+#endif
 
    return 0;  
 }
