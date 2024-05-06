@@ -24,3 +24,9 @@ https://phd.uniroma1.it/web/OffertaFormativaProgrammata.aspx?c=38&i=3556&l=IT
 	ESER4
 	LESSON4
 
+* 16/04/2024: Programming laguages
+	ESER5
+	LESSON5
+
+* 07/05/2024: Some examples
+	LESSON6 
