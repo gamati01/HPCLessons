@@ -7,7 +7,6 @@ Repository for pdf and simple program for HPC lessons for PHD students
 https://phd.uniroma1.it/web/OffertaFormativaProgrammata.aspx?c=38&i=3556&l=IT
 
 
-
 * 11/03/2024: introduction
 	ESER1
 	LESSON1
@@ -30,3 +29,5 @@ https://phd.uniroma1.it/web/OffertaFormativaProgrammata.aspx?c=38&i=3556&l=IT
 
 * 07/05/2024: Some examples
 	LESSON6 
+
+
