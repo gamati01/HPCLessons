@@ -1,4 +1,4 @@
-# HPCLessons
+# HPCLessons 2024
 
 Repository for pdf and simple program for HPC lessons for PHD students
 
