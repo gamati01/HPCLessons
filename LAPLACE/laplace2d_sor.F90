@@ -7,7 +7,7 @@ program laplace2d_sor
   integer, parameter :: Nx = 512+1         ! Number of grid points in x
   integer, parameter :: Ny = 512+1         ! Number of grid points in y
   double precision, parameter :: tol = 1.0d-6
-  double precision, parameter :: w   = 1.8d0  ! Over-relaxation factor (1 < w < 2)
+  double precision, parameter :: w   = 1.95d0  ! Over-relaxation factor (1 < w < 2)
   integer, parameter :: maxIter = 100000
 
   ! --------------------------------------------------------------------------
