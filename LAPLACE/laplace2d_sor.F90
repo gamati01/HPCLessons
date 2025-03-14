@@ -34,13 +34,13 @@ program laplace2d_sor
   ! y=0 => u(x,0) = sin(pi*x)
   do i = 0, Nx-1
     x = dble(i) * dx
-    u(i+1,1) = sin(acos(-1.0d0)*x)
+    u(i+1,1) = sin(pi*x)
   end do
 
   ! y=1 => u(x,1) = sin(pi*x)*exp(-pi)
   do i = 0, Nx-1
     x = dble(i) * dx
-    u(i+1,Ny) = sin(acos(-1.0d0)*x)*exp(-acos(-1.0d0))
+    u(i+1,Ny) = sin(pi*x)*exp(-pi)
   end do
 
   call cpu_time(start)
