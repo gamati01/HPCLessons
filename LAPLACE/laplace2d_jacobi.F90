@@ -15,6 +15,7 @@ program laplace_jacobi_correct
   double precision, dimension(Nx,Ny) :: u, u_new
   double precision :: dx, dy, x, y, pi
   double precision :: err, diff, exactVal, maxErr, start, finish
+  double precision :: u_new_ij, u_ij
   integer :: i, j, iter
 
   ! Compute pi and uniform grid spacing
@@ -56,9 +57,13 @@ program laplace_jacobi_correct
     do j = 2, Ny - 1
       do i = 2, Nx - 1
         ! Laplace update: average of the four neighbors
-        u_new(i,j) = 0.25d0 * (u(i+1,j) + u(i-1,j) + u(i,j+1) + u(i,j-1))
-        diff = dabs(u_new(i,j) - u(i,j))
+        u_ij     = u(i,j)
+        u_new_ij = 0.25d0 * (u(i+1,j) + u(i-1,j) + u(i,j+1) + u(i,j-1))
+        ! Compute difference
+        diff = dabs(u_new_ij - u_ij)
         if (diff > err) err = diff
+        ! Update
+        u_new(i,j) = u_new_ij
       end do
     end do
 
