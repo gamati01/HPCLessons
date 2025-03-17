@@ -10,7 +10,7 @@ https:https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=40&i=3556&
 
 Lesson structures and arguments:
 
-* 0	
+* 0	HPC-0.pdf
 	Course Presentation
 		* Teachers
 		* repository
