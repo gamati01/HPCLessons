@@ -3,21 +3,13 @@ HPCLessons
 
 
 1. Introduction
----------------
 
-Repository for pdf and simple program for HPC lessons for PHD students
-WORK in PROGRESS
-
-* 2025 Edition
-
-
-.. code-block:: bash
+Repository for pdf and simple program for HPC lessons for PHD students (2025 Edition)
 
 https:https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=40&i=3556&l=IT
 
-
 2. Lesson structures and main arguments
----------------------------------------
+
 
 * 0	HPC-0.pdf
 	Course Presentation
