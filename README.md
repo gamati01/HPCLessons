@@ -1,4 +1,9 @@
-# HPCLessons
+HPCLessons
+==========
+
+
+1. Introduction
+---------------
 
 Repository for pdf and simple program for HPC lessons for PHD students
 WORK in PROGRESS
@@ -11,7 +16,8 @@ WORK in PROGRESS
 https:https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=40&i=3556&l=IT
 
 
-Lesson structures and arguments:
+2. Lesson structures and main arguments
+---------------------------------------
 
 * 0	HPC-0.pdf
 	Course Presentation
@@ -130,7 +136,7 @@ Lesson structures and arguments:
 		* Performance Portability issues
 		* wrap-up
 		* Q/A
-	Take home message
+	Take home message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
 		* HPC is th sum of different skills. Be courious
 
 * 	Additional
