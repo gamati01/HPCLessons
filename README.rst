@@ -11,14 +11,14 @@ https:https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=40&i=3556&
 2. Lesson structures and main arguments
 
 
-* 0	HPC-0.pdf
+* Lesson 0	(HPC-0.pdf)
 	Course Presentation
 		* Teachers
 		* repository
 		* lessons
 		* pre-requisites
 
-* 1	01/04/2025
+* Lesson 1: 01/04/2025
 	introduction to HPC
 	introduction to CoCalc
 	Homework:
