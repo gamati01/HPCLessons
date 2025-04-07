@@ -30,20 +30,21 @@ https:https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=40&i=3556&
 		* Good/Bad performances depends from user
 		* TO exploit performance HW (vanilla) knowledge is mandatory
 		
-* 2	08/04/2025
+* Lesson 2: 08/04/2025
 	MM multiplication verification
 		* Why so different performances?
 	How the HW is:
  		* Von Neumann Model (Store/Load architecture)
 		* Memory Gap
+	Why the memory GAP?
 		* Hiding Memory gap: 
-			Chaching: pro/cons
+ 	                How a Floating point units works
+			Caching: pro/cons
 	Take home message:
 		* Data access is the key to go slow/fast
 
 
 * 3 	15/04/25
-	Why the memory GAP?
  	How a Floating point units works
 		* Serial, Pipelined, Superpipelined, OOO
 		* Vector
