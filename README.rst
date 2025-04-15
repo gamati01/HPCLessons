@@ -44,7 +44,7 @@ https:https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=40&i=3556&
 		* Data access is the key to go slow/fast
 
 
-* 3 	15/04/25
+* Lesson 3: 15/04/25 
  	How a Floating point units works
 		* Serial, Pipelined, Superpipelined, OOO
 		* Vector
