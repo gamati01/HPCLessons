@@ -62,32 +62,23 @@ https:https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=40&i=3556&
 		* ---> GPU 
 
 
-* 4	29/04/2025
+* Lesson 4: 29/04/2025
 	MM multiplication verification
 	Algorithm
-		* order of complexity
-	The profiling: understand where you spent more time
-		* gprof
-		* code instrumentation 
-	Implementation: put all together
+		* Sieve 
+	Instruction vs.Cloks
+		* mathematical functions
+	Implementation: put all together (MMM)
 		* Data access
 		* FP exploitation
 		* precision
-	Example
-		* Crivello di Eratostene
-		* TSP
-		* Laplace
-			* Jacobi
-			* SOR
-	Homework:
-		* Jacobi vs. SOR. : which is the most efficente? in which region?
 	Take home message
 		* Algorithm chioce is a crucial step
 		* some operations are (very) more expensive than others
 		* mandatory to understand where you are spending more time
 
 
-* 5 	05/05/2025
+* 5 	06/05/2025
 	Compiler 
 		* what can do
 		* what cannot do
