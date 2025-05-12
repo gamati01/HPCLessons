@@ -76,9 +76,6 @@ https:https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=40&i=3556&
 		* Algorithm chioce is a crucial step
 		* some operations are (very) more expensive than others
 		* mandatory to understand where you are spending more time
-
-
-* 5 	06/05/2025
 	Compiler 
 		* what can do
 		* what cannot do
@@ -93,18 +90,24 @@ https:https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=40&i=3556&
 	Take home message
 		* Compiler can both boost or depress performance
 
+* Lesson 5 	06/05/2025
 
-* 6 	12/05/2025
-	CPU Parallel paradigm 1
-	 	 Scalaility, Ahmdal law
-		* OpenMP
-			* best practices
-		* MPI
-			* best practices
-		* intrinsic parallelism (do concurrent/....)
-	Take home message
-                * There are different way to exploit parallel computing
-		* CPU optimization is a preliminary step before going to GPUs
+        Floating point
+                * cancellation
+                * single, double and reduced precision
+
+        Today HW
+                * shared memory (UMA & NUMA)
+                * distributed memory
+                * heterogenous programming
+                * Amdhal Law
+                * gufstafson Law
+
+* Lesson 6 	13/05/2025
+        OpenMP
+                OpenMP structure
+                OpebMP syntax
+                Some Example
 
 * 7 	19/05/2025	
 	Parallel paradigm 2 (GPU)
