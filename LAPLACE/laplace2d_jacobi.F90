@@ -4,10 +4,10 @@ program laplace_jacobi_correct
   !-----------------------------------------------------------------------
   ! Parameters
   !-----------------------------------------------------------------------
-  integer, parameter :: Nx = 256+1       ! # of grid points in x
-  integer, parameter :: Ny = 256+1       ! # of grid points in y
+  integer, parameter :: Nx = 512+1       ! # of grid points in x
+  integer, parameter :: Ny = 512+1       ! # of grid points in y
   integer, parameter :: maxIter = 500000 ! Max iterations (Jacobi is slow)
-  double precision, parameter :: tol = 1.0d-10  ! Convergence tolerance
+  double precision, parameter :: tol = 1.0d-9  ! Convergence tolerance
 
   !-----------------------------------------------------------------------
   ! Variables

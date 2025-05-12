@@ -4,8 +4,8 @@ program laplace2d_sor
   ! --------------------------------------------------------------------------
   ! PARAMETERS
   ! --------------------------------------------------------------------------
-  integer, parameter :: Nx = 256+1         ! Number of grid points in x
-  integer, parameter :: Ny = 256+1         ! Number of grid points in y
+  integer, parameter :: Nx = 512+1         ! Number of grid points in x
+  integer, parameter :: Ny = 512+1         ! Number of grid points in y
   double precision, parameter :: tol = 1.0d-7
   double precision, parameter :: w   = 1.99d0  ! Over-relaxation factor (1 < w < 2) WARNIG: it is case dependent!
   integer, parameter :: maxIter = 100000
