@@ -1,9 +1,12 @@
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
+N = sys.argv[1]
+
 # --- Parameters: adjust these based on your Fortran simulation ---
-Nx = 256+1  # Number of grid points in x (should match your Fortran code)
-Ny = 256+1  # Number of grid points in y
+Nx = int(N)+1  # Number of grid points in x (should match your Fortran code)
+Ny = int(N)+1  # Number of grid points in y
 
 # --- Load the data ---
 # The file 'laplace_solution.dat' is assumed to have three columns: x, y, u
