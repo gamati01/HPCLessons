@@ -21,7 +21,7 @@ program laplace_jacobi_pointers
 
   ! Allocate memory
   allocate(u(Nx,Ny), u_new(Nx,Ny))
-  
+
   ! Start timer
   start = omp_get_wtime()  ! <-- Replace cpu_time(start)
 
@@ -35,7 +35,7 @@ program laplace_jacobi_pointers
   u_new = 0.0d0
 
   !-----------------------------------------------------------------------
-  ! Apply boundary conditions (parallelized)
+  ! Apply boundary conditions
   !-----------------------------------------------------------------------
   ! y=0 => u(x,0) = sin(pi*x)
   !$OMP PARALLEL DO PRIVATE(i,x) SHARED(u, u_new) SCHEDULE(static)
@@ -55,7 +55,7 @@ program laplace_jacobi_pointers
   end do
   !$OMP END PARALLEL DO
 
-  ! Jacobi iteration (parallelized)
+  ! Jacobi iteration
   do iter = 1, maxIter
     err = 0.0d0
     !$OMP PARALLEL DO PRIVATE(i,j,diff) SHARED(u, u_new) REDUCTION(max:err) SCHEDULE(static)
@@ -80,7 +80,7 @@ program laplace_jacobi_pointers
   print *, "Converged in", iter, "iterations with error", err
 
   !-----------------------------------------------------------------------
-  ! Compare numerical solution to exact solution (parallelized)
+  ! Compare numerical solution to exact solution: sin(pi*x)*exp(-pi*y)
   !-----------------------------------------------------------------------
   maxErr = 0.0d0
   !$OMP PARALLEL DO PRIVATE(i, j, x, y, exactVal, diff) SHARED(u) REDUCTION(max:maxErr)
