@@ -38,27 +38,23 @@ program laplace_jacobi_pointers
   ! Apply boundary conditions
   !-----------------------------------------------------------------------
   ! y=0 => u(x,0) = sin(pi*x)
-  !!!!$OMP PARALLEL DO PRIVATE(i,x) SHARED(u, u_new) SCHEDULE(static)
   do i = 1, Nx
     x = (i - 1)*dx
     u(i,1)     = sin(pi*x)
     u_new(i,1) = u(i,1)
   end do
-  !!!!$OMP END PARALLEL DO
 
   ! y=1 => u(x,1) = sin(pi*x)*exp(-pi)
-  !!!!$OMP PARALLEL DO PRIVATE(i,x) SHARED(u, u_new) SCHEDULE(static)
   do i = 1, Nx
     x = (i - 1)*dx
     u(i,Ny)     = sin(pi*x)*exp(-pi)
     u_new(i,Ny) = u(i,Ny)
   end do
-  !!!!$OMP END PARALLEL DO
 
   ! Jacobi iteration
   do iter = 1, maxIter
     err = 0.0d0
-    !$OMP PARALLEL DO DEFAULT(NONE) PRIVATE(i,j,diff) SHARED(u, u_new) REDUCTION(max:err) SCHEDULE(static)
+    !$OMP PARALLEL DO DEFAULT(NONE) PRIVATE(i,j,diff) SHARED(u, u_new) REDUCTION(max:err)
     do j = 2, Ny-1
       do i = 2, Nx-1
         u_new(i,j) = 0.25d0 * (u(i+1,j) + u(i-1,j) + u(i,j+1) + u(i,j-1))
