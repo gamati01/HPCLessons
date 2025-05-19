@@ -84,15 +84,15 @@ program laplace_jacobi_gpu
     if (err < tol) exit
   end do
 
-  ! Ensure final solution is in u (not u_new)
-  if (swap_flag) then
-    !$acc parallel loop gang vector collapse(2)
-    do j = 2, Ny-1
-      do i = 2, Nx-1
-        u(i,j) = u_new(i,j)
-      end do
-    end do
-  end if
+  !!!! Ensure final solution is in u (not u_new)
+  !!!if (swap_flag) then
+  !!!  !$acc parallel loop gang vector collapse(2)
+  !!!  do j = 2, Ny-1
+  !!!    do i = 2, Nx-1
+  !!!      u(i,j) = u_new(i,j)
+  !!!    end do
+  !!!  end do
+  !!!end if
 
   !$acc update self(u)
   print *, "Converged in", iter, "iterations with error", err
@@ -107,7 +107,11 @@ program laplace_jacobi_gpu
       y = (j - 1)*dy
       x = (i - 1)*dx
       exactVal = sin(pi*x)*exp(-pi*y)
-      diff = dabs(u(i,j) - exactVal)
+      if (swap_flag) then
+       diff = dabs(u_new(i,j) - exactVal)
+      else
+       diff = dabs(u(i,j) - exactVal)
+      endif
       if (diff > maxErr) maxErr = diff
     end do
   end do
@@ -124,12 +128,15 @@ program laplace_jacobi_gpu
   !-----------------------------------------------------------------------
   open(unit=10, file='laplace_solution.dat', status='replace')
   do j = 1, Ny
-    y = (j - 1)*dy
     do i = 1, Nx
+      y = (j - 1)*dy
       x = (i - 1)*dx
-      write(10,'(3E16.8)') x, y, u(i,j)
+      if (swap_flag) then 
+       write(10,'(3E16.8)') x, y, u_new(i,j)
+      else
+       write(10,'(3E16.8)') x, y, u(i,j)
+      endif
     end do
-    write(10,*)
   end do
   close(10)
 
