@@ -65,7 +65,7 @@ program laplace2d_sor
 
           ! SOR update
           diff   = uNew - uOld
-          u(i,j) = uOld + w*diff
+          u(i,j) = uOld + w*diff ! possible race condition, how do we fix it ???
 
           ! Track maximum update
           err = max(err, abs(diff))
