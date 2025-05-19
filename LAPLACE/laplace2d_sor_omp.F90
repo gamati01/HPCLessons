@@ -3,7 +3,8 @@ program laplace2d_sor_redblack
   implicit none
 
   ! Parameters
-  integer, parameter :: Nx = 512+2, Ny = 512+2
+  integer, parameter :: Nx = 1024+2
+  integer, parameter :: Ny = 1024+2
   double precision, parameter :: tol = 1.0d-9, w = 1.99d0
   integer, parameter :: maxIter = 100000
 
@@ -83,8 +84,8 @@ program laplace2d_sor_redblack
   ! Optional: write the full solution to a file for visualization
   open(unit=10, file='laplace_solution.dat', status='replace')
   do j = 1, Ny
-     y = (j-1)*dy
      do i = 1, Nx
+        y = (j-1)*dy
         x = (i-1)*dx
         write(10,'(3E16.8)') x, y, u(i,j)
      end do
