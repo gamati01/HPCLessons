@@ -1,4 +1,5 @@
 program laplace2d_sor
+  use omp_lib
   implicit none
 
   ! --------------------------------------------------------------------------
@@ -13,12 +14,14 @@ program laplace2d_sor
   ! --------------------------------------------------------------------------
   ! VARIABLES
   ! --------------------------------------------------------------------------
-  double precision, dimension(Nx, Ny) :: u
+  double precision, dimension(Nx, Ny) :: u 
   double precision :: dx, dy, x, y
   double precision :: err, diff, uNew, uOld, start, finish, exactval, maxerr, pi
   integer :: i, j, iter
 
-  call cpu_time(start)
+  ! Start timer
+  start = omp_get_wtime()  ! <-- Replace cpu_time(start)
+
   ! --------------------------------------------------------------------------
   ! COMPUTE GRID SPACING
   ! --------------------------------------------------------------------------
@@ -50,6 +53,7 @@ program laplace2d_sor
   do iter = 1, maxIter
     err = 0.0d0
 
+    !$OMP PARALLEL DO DEFAULT(NONE) PRIVATE(i,j,uOld,uNew,diff) SHARED(u) REDUCTION(max:err)
     ! Update interior points (i=2..Nx-1, j=2..Ny-1)
     do j = 2, Ny-1
        do i = 2, Nx-1
@@ -64,9 +68,10 @@ program laplace2d_sor
           u(i,j) = uOld + w*diff
 
           ! Track maximum update
-          if (abs(diff) > err) err = abs(diff)
+          err = max(err, abs(diff))
        end do
     end do
+    !$OMP END PARALLEL DO
 
     ! Check for convergence
     if (err < tol) then
@@ -84,20 +89,23 @@ program laplace2d_sor
   ! Compare numerical solution to exact solution: sin(pi*x)*exp(-pi*y)
   !-----------------------------------------------------------------------
   maxErr = 0.0d0
+  !$OMP PARALLEL DO DEFAULT(NONE) PRIVATE(i, j, x, y, exactVal, diff) SHARED(dy, dx, pi, u) REDUCTION(max:maxErr)
   do j = 1, Ny
-    y = (j - 1)*dy
     do i = 1, Nx
+      y = (j - 1)*dy
       x = (i - 1)*dx
       exactVal = sin(pi*x)*exp(-pi*y)
       diff = dabs(u(i,j) - exactVal)
-      if (diff > maxErr) maxErr = diff
+      maxErr = max(maxErr, diff)
     end do
   end do
+  !$OMP END PARALLEL DO
 
   print *, "Max difference from exact solution = ", maxErr
   print *, "Potential at (x=0.5,y=0.5) ~ ", u((Nx-1)/2, (Ny-1)/2)
 
-  call cpu_time(finish)
+  ! Stop timer
+  finish = omp_get_wtime()  ! <-- Replace cpu_time(finish)
   print '("Time = ",f10.4," seconds.")',finish-start
 
   ! Optional: write the full solution to a file for visualization
