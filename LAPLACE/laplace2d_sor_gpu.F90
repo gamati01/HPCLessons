@@ -66,7 +66,7 @@ program laplace2d_sor_redblack
           uNew = 0.25d0*( u(i+1,j) + u(i-1,j) + u(i,j+1) + u(i,j-1) )
           diff = uNew - uOld
           u(i,j) = uOld + w*diff
-          if (abs(diff) > err) err = abs(diff)
+          err = max(err, abs(diff))
         end if
       end do
     end do
@@ -82,7 +82,7 @@ program laplace2d_sor_redblack
           uNew = 0.25d0*( u(i+1,j) + u(i-1,j) + u(i,j+1) + u(i,j-1) )
           diff = uNew - uOld
           u(i,j) = uOld + w*diff
-          if (abs(diff) > err) err = abs(diff)
+          err = max(err, abs(diff))
         end if
       end do
     end do
@@ -109,7 +109,7 @@ program laplace2d_sor_redblack
       x = (i - 1)*dx
       exactVal = sin(pi*x)*exp(-pi*y)
       diff = dabs(u(i,j) - exactVal)
-      if (diff > maxErr) maxErr = diff
+      maxErr = max(maxErr, abs(diff))
     end do
   end do
   !$acc end parallel loop
