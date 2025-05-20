@@ -35,12 +35,6 @@ program laplace2d_sor_redblack
   ! --------------------------------------------------------------------------
   u = 0.0d0
 
-  ! Copy data to device
-  !$acc enter data copyin(u)
-
-  ! Update boundary conditions on host
-  !$acc update host(u)
-  
   ! y=0 => u(x,0) = sin(pi*x)
   do i = 0, Nx-1
     x = dble(i) * dx
@@ -53,8 +47,8 @@ program laplace2d_sor_redblack
     u(i+1,Ny) = sin(pi*x)*exp(-pi)
   end do
 
-  ! Update boundary conditions on device
-  !$acc update device(u)
+  ! Copy data to device
+  !$acc enter data copyin(u)
 
   ! --------------------------------------------------------------------------
   ! RED-BLACK SOR ITERATION - GPU ACCELERATED
@@ -108,7 +102,7 @@ program laplace2d_sor_redblack
   ! Compare numerical solution to exact solution: sin(pi*x)*exp(-pi*y)
   !-----------------------------------------------------------------------
   maxErr = 0.0d0
-  !$acc parallel loop collapse(2) reduction(max:maxErr) private(x, y, exactVal, diff)
+  !$acc parallel loop collapse(2) present(u) reduction(max:maxErr) private(x, y, exactVal, diff)
   do j = 1, Ny
     do i = 1, Nx
       y = (j - 1)*dy
