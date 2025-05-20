@@ -59,7 +59,7 @@ program laplace_jacobi_gpu
     err = 0.0d0
 
     if (swap_flag) then
-      !$acc parallel loop gang vector collapse(2) reduction(max:err)
+      !$acc parallel loop gang vector collapse(2) present(u,u_new) reduction(max:err)
       do j = 2, Ny-1
         do i = 2, Nx-1
           u(i,j) = 0.25d0 * (u_new(i+1,j) + u_new(i-1,j) + u_new(i,j+1) + u_new(i,j-1))
@@ -68,7 +68,7 @@ program laplace_jacobi_gpu
         end do
       end do
     else
-      !$acc parallel loop gang vector collapse(2) reduction(max:err)
+      !$acc parallel loop gang vector collapse(2) present(u,u_new) reduction(max:err)
       do j = 2, Ny-1
         do i = 2, Nx-1
           u_new(i,j) = 0.25d0 * (u(i+1,j) + u(i-1,j) + u(i,j+1) + u(i,j-1))
@@ -94,14 +94,19 @@ program laplace_jacobi_gpu
   !!!  end do
   !!!end if
 
-  !$acc update self(u)
+  if (swap_flag) then
+   !$acc update self(u_new)
+  else
+   !$acc update self(u)
+  endif
+
   print *, "Converged in", iter, "iterations with error", err
 
   !-----------------------------------------------------------------------
   ! Compare numerical solution to exact solution
   !-----------------------------------------------------------------------
   maxErr = 0.0d0
-  !$acc parallel loop gang vector collapse(2) reduction(max:maxErr)
+  !$acc parallel loop gang vector collapse(2) present(u,u_new) reduction(max:maxErr)
   do j = 1, Ny
     do i = 1, Nx
       y = (j - 1)*dy
@@ -112,7 +117,7 @@ program laplace_jacobi_gpu
       else
        diff = dabs(u(i,j) - exactVal)
       endif
-      if (diff > maxErr) maxErr = diff
+      maxErr = max(maxErr,diff)
     end do
   end do
 

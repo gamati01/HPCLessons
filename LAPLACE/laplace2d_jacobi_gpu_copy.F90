@@ -53,7 +53,7 @@ program laplace_jacobi_gpu_forced_copy
     err = 0.0d0
 
     ! Compute u_new from u
-    !$acc parallel loop gang vector collapse(2) reduction(max:err)
+    !$acc parallel loop gang vector collapse(2) present(u,u_new) reduction(max:err)
     do j = 2, Ny-1
       do i = 2, Nx-1
         u_new(i,j) = 0.25d0 * (u(i+1,j) + u(i-1,j) + u(i,j+1) + u(i,j-1))
@@ -63,7 +63,7 @@ program laplace_jacobi_gpu_forced_copy
     end do
 
     ! FORCE COPY u_new back to u (no swapping)
-    !$acc parallel loop gang vector collapse(2)
+    !$acc parallel loop gang vector collapse(2) present(u,u_new)
     do j = 2, Ny-1
       do i = 2, Nx-1
         u(i,j) = u_new(i,j)
@@ -78,14 +78,14 @@ program laplace_jacobi_gpu_forced_copy
 
   ! Verify solution
   maxErr = 0.0d0
-  !$acc parallel loop gang vector collapse(2) reduction(max:maxErr)
+  !$acc parallel loop gang vector collapse(2) present(u) reduction(max:maxErr)
   do j = 1, Ny
     do i = 1, Nx
       y = (j - 1)*dy
       x = (i - 1)*dx
       exactVal = sin(pi*x)*exp(-pi*y)
       diff = dabs(u(i,j) - exactVal)
-      if (diff > maxErr) maxErr = diff
+      maxErr = max(maxErr,diff)
     end do
   end do
 
