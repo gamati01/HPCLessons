@@ -12,11 +12,7 @@ https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=41&i=3556&l=IT
 
 * 0	HPC-0.pdf
 	Course Presentation
-		* Teachers
-		* repository
-		* lessons
-		* pre-requisites
-
+	
 * 1	HPC-1.pdf
 	introduction to HPC
   		
