@@ -1,1 +1,33 @@
 
+Serial code
+Simple Matrix Matrix (MM) program, in Fortran ans C (to warm-up....)
+
+.
+├── clean.sh
+├── compile.c.sh
+├── compile.fortran.sh
+├── inc_precision.h
+├── mm.c
+├── mm.F90
+├── mod_tools.F90
+└── README
+
+
+
+Fortran: dynamic allocation, matrix size defined at input
+mm.F90			-> main
+mod_tools.F90		-> auxiliary
+
+* to compile fortran code:
+        ./compile.fortran.sh
+
+C: dynamic allocation, matrix size defined at inpur
+mm.c			-> main
+inc_precision.h         -> auxiliary		 
+
+* to compile C code:
+	./compile.c.sh
+
+* to remove/clean
+	./clean.sh
+
