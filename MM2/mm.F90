@@ -6,7 +6,11 @@
 !     NAME
 !       mm
 !     DESCRIPTION
-!       Matrix Multiplication
+!       Matrix Multiplication with 
+!             * blocking of factor size
+!             * unrolling of outer loop of a factor 4
+!             * unrolling of middle loop of a factor 4
+!             * local scalar (temp?) to exploit temporal locality
 !       size of the matrix should be given at standard input
 !     INPUTS
 !       none
