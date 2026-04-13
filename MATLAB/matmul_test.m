@@ -75,7 +75,7 @@ clear
 close all
 clc
 
-n = 1024;
+n = 2048;
 
 % Generate random square matrices A and B
 A = rand(n);
