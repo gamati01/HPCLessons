@@ -1,17 +1,16 @@
 #
+export OPT=$1
+#
 rm -rf *.o mm.x *.mod
 #
 # nvfortran (NVIDIA)
 COMP=nvfortran
-OPT=
 #
 # ifx (intel)
 COMP=ifx
-OPT=
 #
 # gfortran (GNU)
 COMP=gfortran
-OPT=
 #
 echo "compiling with " $COMP $OPT 
 #
