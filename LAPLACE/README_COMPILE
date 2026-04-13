@@ -1,0 +1,5 @@
+CPU
+gfortran -O3 <PROGRAM>.F90 -o <PROGRAM>.exe (-fopenmp) # -fopenmp is for openmp parallelism
+
+GPU
+nvfortran -O3 -acc -gpu=cc89,cuda12.9 -Minfo=accel <PROGRAM>.F90 -o <PROGRAM>.exe
