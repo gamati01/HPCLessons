@@ -300,16 +300,16 @@ program laplace2d_fft_direct_batched
   print *, "Total time = ", finish - start
 
   ! Optional output
-  ! open(unit=10, file='laplace_solution.dat', status='replace')
-  ! do j = 1, Ny
-  !    do i = 1, Nx
-  !       y = (j-1)*dy
-  !       x = (i-1)*dx
-  !       write(10,'(3E16.8)') x, y, u(i,j)
-  !    end do
-  !    write(10,*)
-  ! end do
-  ! close(10)
+   open(unit=10, file='laplace_solution.dat', status='replace')
+   do j = 1, Ny
+      do i = 1, Nx
+         y = (j-1)*dy
+         x = (i-1)*dx
+         write(10,'(3E16.8)') x, y, u(i,j)
+      end do
+      write(10,*)
+   end do
+   close(10)
 
   deallocate(u, spec)
 
