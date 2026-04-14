@@ -43,5 +43,5 @@ https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=41&i=3556&l=IT
 
     1. MM1: simple serial matrix-matrix product (naif)
     2. MM2: serial matrix-matrix production (with unrolling, blocking et al)
-    3. MM3: open mp matrix-matrix production
+    3. MM3: openMP matrix-matrix production
 
