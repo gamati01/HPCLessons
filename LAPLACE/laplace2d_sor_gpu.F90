@@ -4,11 +4,11 @@ program laplace2d_sor_redblack
   ! --------------------------------------------------------------------------
   ! PARAMETERS
   ! --------------------------------------------------------------------------
-  integer, parameter :: Nx = 1024+2         ! Number of grid points in x
-  integer, parameter :: Ny = 1024+2         ! Number of grid points in y
-  double precision, parameter :: tol = 1.0d-9
+  integer, parameter :: Nx = 2048+2         ! Number of grid points in x
+  integer, parameter :: Ny = 2048+2         ! Number of grid points in y
+  double precision, parameter :: tol = 1.0d-8
   double precision, parameter :: w   = 1.99d0  ! Over-relaxation factor (1 < w < 2)
-  integer, parameter :: maxIter = 100000
+  integer, parameter :: maxIter = 900000
 
   ! --------------------------------------------------------------------------
   ! VARIABLES

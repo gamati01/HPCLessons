@@ -3,14 +3,17 @@ program laplace2d_sor_redblack
   implicit none
 
   ! Parameters
-  integer, parameter :: Nx = 1024+2
-  integer, parameter :: Ny = 1024+2
-  double precision, parameter :: tol = 1.0d-9, w = 1.99d0
+  integer, parameter :: Nx = 2048+2
+  integer, parameter :: Ny = 2048+2
+  double precision, parameter :: tol = 1.0d-8, w = 1.99d0
   integer, parameter :: maxIter = 100000
 
   ! Variables
-  double precision :: u(Nx, Ny), dx, dy, x, y, err, diff, start, finish, pi, maxErr, exactVal
+  double precision, allocatable :: u(:,:)
+  double precision :: dx, dy, x, y, err, diff, start, finish, pi, maxErr, exactVal
   integer :: i, j, iter, rb
+
+  allocate(u(Nx,Ny))
 
   ! Start timer
   start = omp_get_wtime()
@@ -63,7 +66,6 @@ program laplace2d_sor_redblack
 
   ! Verify solution
   maxErr = 0.0d0
-  !$OMP PARALLEL DO PRIVATE(i,j,x,y,exactVal,diff) REDUCTION(max:maxErr)
   do j = 1, Ny
     do i = 1, Nx
       x = (i-1)*dx
@@ -72,7 +74,6 @@ program laplace2d_sor_redblack
       maxErr = max(maxErr, abs(u(i,j) - exactVal))
     end do
   end do
-  !$OMP END PARALLEL DO
 
   print *, "Max difference from exact solution = ", maxErr
   print *, "Potential at (x=0.5,y=0.5) ~ ", u((Nx-1)/2, (Ny-1)/2)
@@ -92,5 +93,7 @@ program laplace2d_sor_redblack
      write(10,*)
   end do
   close(10)
+
+  deallocate(u)
 
 end program laplace2d_sor_redblack
