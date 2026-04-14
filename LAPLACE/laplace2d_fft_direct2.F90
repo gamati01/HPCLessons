@@ -34,7 +34,6 @@ program laplace2d_fft_direct_batched
 
   dx = 1.d0 / dble(Nx - 1)
   dy = 1.d0 / dble(Ny - 1)
- !scale2d = 1.d0 / dble(4 * (nxi + 1) * (nyi + 1))
   scale2d = 4.d0 / dble((nxi + 1) * (nyi + 1))
 
   allocate(u(Nx,Ny), spec(nxi,nyi))
