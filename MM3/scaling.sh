@@ -10,12 +10,13 @@ if [ -z "$THREADS" ]; then
 fi
 #
 #
-SIZE=4096
-echo "Scaling up to $1 threads for size $SIZE"
-echo $SIZE > input.dat
+for size in 2048 4096 8192; do
+	echo "Scaling up to $1 threads for size $size"
+	echo $size > input.dat
 #
-for th in `seq 1 $1`; do
-	export OMP_NUM_THREADS=$th
-	echo "threads = "$th
-	./mm.x < input.dat > out.$th.dat
+	for th in `seq 1 $1`; do
+		export OMP_NUM_THREADS=$th
+		echo "threads = "$th
+		./mm.x < input.dat > out.$size.$th.dat
+	done	
 done
