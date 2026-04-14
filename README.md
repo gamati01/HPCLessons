@@ -32,5 +32,9 @@ https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=41&i=3556&l=IT
     3. 24/03/2026  (HPC-3.pdf)
     4. 30/03/2026  (HPC-4.pdf)    	
 
+4.  Codes
 
+    1. MM1: simple serial matrix-matrix product (naif)
+    2. MM2: serial matrix-matrix production (with unrolling, blocking et al)
+    3. MM3: open mp matrix-matrix production
 
