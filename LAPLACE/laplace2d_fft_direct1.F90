@@ -7,8 +7,8 @@ program laplace2d_fft_direct
   ! --------------------------------------------------------------------------
   ! PARAMETERS
   ! --------------------------------------------------------------------------
-  integer, parameter :: Nx  = 2048 + 2
-  integer, parameter :: Ny  = 2048 + 2
+  integer, parameter :: Nx  = 4096 + 2
+  integer, parameter :: Ny  = 4096 + 2
   integer, parameter :: nxi = Nx - 2
   integer, parameter :: nyi = Ny - 2
   integer, parameter :: nxe = 2 * (nxi + 1)
