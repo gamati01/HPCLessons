@@ -24,13 +24,20 @@ https://phd.uniroma1.it/web/OffertaFormativaErogataCiclo.aspx?c=41&i=3556&l=IT
   
 * 4 HPC-4.pdf
   	Compiler & Floating point issues
+  
+* 5 HPC-5.pdf
+  	Sheare memory and distributed memory
+
+* 6 HPC-6.pdf
+  	Shared memory paradigm (OpenMP)
 
 3.  Lessons
 
    	1. 10/03/2026  (HPC-0.pdf,HPC-1.pdf)
     2. 17/03/2026  (HPC-2.pdf)
     3. 24/03/2026  (HPC-3.pdf)
-    4. 30/03/2026  (HPC-4.pdf)    	
+    4. 30/03/2026  (HPC-4.pdf)
+    5. 14/04/2026  (HPC-5.pdf,HPC-6.pdf)  	
 
 4.  Codes
 
