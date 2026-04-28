@@ -28,6 +28,8 @@ program laplace2d_fft_direct_batched
   integer(c_int), dimension(1) :: n1, inembed1, onembed1
   integer :: i, j
 
+  call print_gpu_mem("Before allocation")
+
   print *, "--------------------------------------------"
   print *, " Direct Laplace (batched 1D DST-I via cuFFT)"
   print *, "--------------------------------------------"
@@ -81,6 +83,8 @@ program laplace2d_fft_direct_batched
     end do
   end do
 
+  call print_gpu_mem("After x allocation")
+
   n1(1)       = nxe
   inembed1(1) = nxe
   onembed1(1) = nxe
@@ -122,6 +126,8 @@ program laplace2d_fft_direct_batched
       worky(j,i) = (0.d0, 0.d0)
     end do
   end do
+
+  call print_gpu_mem("After y allocation")
 
   ! Build odd extension along y on device:
   !$acc parallel loop collapse(2) present(worky,spec)
@@ -314,3 +320,26 @@ program laplace2d_fft_direct_batched
   deallocate(u, spec)
 
 end program laplace2d_fft_direct_batched
+
+subroutine print_gpu_mem(label)
+  use cudafor
+  implicit none
+
+  character(len=*), intent(in) :: label
+  integer :: ierr
+  integer(8) :: free_mem, total_mem, used_mem
+
+  ierr = cudaMemGetInfo(free_mem, total_mem)
+
+  if (ierr /= cudaSuccess) then
+     print *, "cudaMemGetInfo failed: ", cudaGetErrorString(ierr)
+     return
+  endif
+
+  used_mem = total_mem - free_mem
+
+  write(*,'(A)') trim(label)
+  write(*,'(A,F10.3,A)') "  GPU used  = ", real(used_mem)/1024.0**3, " GB"
+  write(*,'(A,F10.3,A)') "  GPU free  = ", real(free_mem)/1024.0**3, " GB"
+  write(*,'(A,F10.3,A)') "  GPU total = ", real(total_mem)/1024.0**3, " GB"
+end subroutine print_gpu_mem
