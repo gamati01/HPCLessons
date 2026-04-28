@@ -3,8 +3,8 @@ program laplace2d_sor_redblack
   implicit none
 
   ! Parameters
-  integer, parameter :: Nx = 2048+2
-  integer, parameter :: Ny = 2048+2
+  integer, parameter :: Nx = 4096+2
+  integer, parameter :: Ny = 4096+2
   double precision, parameter :: tol = 1.0d-8, w = 1.99d0
   integer, parameter :: maxIter = 100000
 

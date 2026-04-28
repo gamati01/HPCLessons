@@ -2,4 +2,6 @@ CPU
 gfortran -O3 <PROGRAM>.F90 -o <PROGRAM>.exe (-fopenmp) # -fopenmp is for openmp parallelism
 
 GPU
-nvfortran -O3 -acc -gpu=cc89,cuda12.9 -Minfo=accel <PROGRAM>.F90 -o <PROGRAM>.exe
+nvfortran -O3 -acc -gpu=cc89,cuda12.9 -Minfo=accel (-cudalib=cufft) <PROGRAM>.F90 -o <PROGRAM>.exe # -cudalib=cufft is for fft programs
+
+REMARK: modify the problem size (i.e. Nx, Ny) so that it is best suited to your hardware
